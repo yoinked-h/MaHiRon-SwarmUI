@@ -17,16 +17,15 @@ public class Mahiron : Extension // extend the "Extension" class in Swarm Core
     // OnInit is called when the extension is loaded, and is the general place to register most things
     public override void OnInit()
     {
-        T2IParamGroup mahironGroup = new("Mahiro is so cute she deserves a better guidance function!! (。・ω・。)", Toggles: true, Open: false, OrderPriority: -8);
-
         Enabled = T2IParamTypes.Register<bool>(new(
             Name: "Enable Mahiron",
-            Description: "[MaHiRo] Enable for main model",
-            Default: "true",
-            Group: mahironGroup,
-            FeatureFlag: "comfyui",
-            OrderPriority: 10,
-            ChangeWeight: 10
+            Description: "Mahiro is so cute she deserves a better guidance function!! (。・ω・。)\nEnable MaHiRo. Changes CFG's behavior to make it cuter and smarter.",
+            Default: "false", // Mahiro is too shy to be true by default
+            Group: T2IParamTypes.GroupSampling,
+            FeatureFlag: "comfyui", // it's apiui now
+            OrderPriority: 8,
+            ChangeWeight: 10,
+            IgnoreIf: "false"
         ));
 
         WorkflowGenerator.AddModelGenStep(g =>
